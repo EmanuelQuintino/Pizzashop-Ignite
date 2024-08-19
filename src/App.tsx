@@ -1,10 +1,12 @@
-import { Button } from "@/components/ui/button";
+import { AppRoutes } from "./routes";
 import "./global.css";
+import { Helmet, HelmetProvider } from "react-helmet-async";
 
 export function App() {
   return (
-    <div className="flex h-screen items-center justify-center">
-      <Button>Click me</Button>
-    </div>
+    <HelmetProvider>
+      <Helmet titleTemplate="%s | Pizzashop Ignite" />
+      <AppRoutes />
+    </HelmetProvider>
   );
 }

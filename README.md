@@ -1,1 +1,1 @@
-# React + TypeScript + Vite
+# Pizzashop Ignite App
