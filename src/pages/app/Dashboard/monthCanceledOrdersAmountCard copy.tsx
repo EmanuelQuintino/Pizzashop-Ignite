@@ -1,5 +1,5 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { XCircle } from "lucide-react";
+import { AlertCircle } from "lucide-react";
 
 export function MonthCanceledOrdersAmountCard() {
   return (
@@ -8,7 +8,7 @@ export function MonthCanceledOrdersAmountCard() {
         <CardTitle className="text-base font-semibold">
           Cancelamentos (mês)
         </CardTitle>
-        <XCircle className="h-4 w-4 text-muted-foreground" />
+        <AlertCircle className="h-4 w-4 text-muted-foreground" />
       </CardHeader>
 
       <CardContent className="space-y-1">
