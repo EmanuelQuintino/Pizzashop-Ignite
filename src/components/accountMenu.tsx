@@ -11,14 +11,16 @@ import { Building, ChevronDown, LogOut } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { getProfile } from "@/api/getProfile";
 import { getManagedRestaurant } from "@/api/getManagedRestaurant";
+import { Skeleton } from "./ui/skeleton";
 
 export function AccountMenu() {
-  const { data: managedRestaurant } = useQuery({
-    queryKey: ["managedRestaurant"],
-    queryFn: getManagedRestaurant,
-  });
+  const { data: managedRestaurant, isLoading: isLoadingManagedRestaurant } =
+    useQuery({
+      queryKey: ["managedRestaurant"],
+      queryFn: getManagedRestaurant,
+    });
 
-  const { data: profile } = useQuery({
+  const { data: profile, isLoading: isLoadingProfile } = useQuery({
     queryKey: ["profile"],
     queryFn: getProfile,
   });
@@ -30,17 +32,30 @@ export function AccountMenu() {
           variant={"outline"}
           className="flex select-none items-center gap-2"
         >
-          {managedRestaurant?.name}
+          {isLoadingManagedRestaurant ? (
+            <Skeleton className="h-4 w-40" />
+          ) : (
+            managedRestaurant?.name
+          )}
           <ChevronDown className="h-4 w-4" />
         </Button>
       </DropdownMenuTrigger>
 
       <DropdownMenuContent align="end" className="w-56">
         <DropdownMenuLabel className="flex flex-col">
-          <span>{profile?.name}</span>
-          <span className="text-xs font-normal text-muted-foreground">
-            {profile?.email}
-          </span>
+          {isLoadingProfile ? (
+            <div className="space-y-1.5">
+              <Skeleton className="h-4 w-32" />
+              <Skeleton className="h-3 w-24" />
+            </div>
+          ) : (
+            <>
+              <span>{profile?.name}</span>
+              <span className="text-xs font-normal text-muted-foreground">
+                {profile?.email}
+              </span>
+            </>
+          )}
         </DropdownMenuLabel>
 
         <DropdownMenuSeparator />
