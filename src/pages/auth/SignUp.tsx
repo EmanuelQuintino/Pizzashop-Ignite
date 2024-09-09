@@ -1,7 +1,9 @@
+import { registerRestaurant } from "@/api/registerRestaurant";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useMutation } from "@tanstack/react-query";
 import { Helmet } from "react-helmet-async";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
@@ -28,17 +30,24 @@ export function SignUp() {
 
   const navigate = useNavigate();
 
-  async function handleSignIn(data: SignUpForm) {
-    try {
-      await new Promise((resolve) => setTimeout(resolve, 2000));
+  const { mutateAsync: registerRestaurantFn } = useMutation({
+    mutationFn: registerRestaurant,
+  });
 
-      console.log(data);
+  async function handleSignIn({
+    restaurantName,
+    managerName,
+    email,
+    phone,
+  }: SignUpForm) {
+    try {
+      await registerRestaurantFn({ restaurantName, managerName, email, phone });
 
       toast.success("Restaurante cadastrado com sucesso!", {
         action: {
           label: "Login",
           onClick: () => {
-            navigate("/sign-in");
+            navigate(`/sign-in?email=${email}`);
           },
         },
       });
