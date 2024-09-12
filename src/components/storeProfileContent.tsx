@@ -135,9 +135,11 @@ export function StoreProfileContent() {
             </Button>
           </DialogClose>
 
-          <Button type="submit" variant={"success"} disabled={isSubmitting}>
-            Salvar
-          </Button>
+          <DialogClose asChild>
+            <Button type="submit" variant={"success"} disabled={isSubmitting}>
+              Salvar
+            </Button>
+          </DialogClose>
         </DialogFooter>
       </form>
     </DialogContent>
