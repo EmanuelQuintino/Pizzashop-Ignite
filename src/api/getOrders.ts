@@ -7,7 +7,7 @@ export type GetOrdersQuery = {
   status?: string | null;
 };
 
-export type GetOrdersProps = {
+export type GetOrdersResponse = {
   orders: {
     orderId: string;
     createdAt: string;
@@ -37,5 +37,5 @@ export async function getOrders({
     },
   });
 
-  return response.data as GetOrdersProps;
+  return response.data as GetOrdersResponse;
 }

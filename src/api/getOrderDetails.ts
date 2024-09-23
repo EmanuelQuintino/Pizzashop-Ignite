@@ -4,7 +4,7 @@ export type OrderDetails = {
   orderId: string;
 };
 
-export type GetOrderDetailsProps = {
+export type GetOrderDetailsResponse = {
   id: string;
   createdAt: string;
   status: "pending" | "canceled" | "processing" | "delivering" | "delivered";
@@ -27,5 +27,5 @@ export type GetOrderDetailsProps = {
 export async function getOrderDetails({ orderId }: OrderDetails) {
   const response = await API.get(`/orders/${orderId}`);
 
-  return response.data as GetOrderDetailsProps;
+  return response.data as GetOrderDetailsResponse;
 }
