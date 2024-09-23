@@ -1,6 +1,6 @@
 import { API } from "@/lib/axios";
 
-export type ManagedRestaurantProps = {
+export type GetManagedRestaurantResponse = {
   name: string;
   id: string;
   createdAt: Date | null;
@@ -11,5 +11,5 @@ export type ManagedRestaurantProps = {
 
 export async function getManagedRestaurant() {
   const response = await API.get("/managed-restaurant");
-  return response.data as ManagedRestaurantProps;
+  return response.data as GetManagedRestaurantResponse;
 }

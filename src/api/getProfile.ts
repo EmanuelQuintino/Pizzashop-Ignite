@@ -1,6 +1,6 @@
 import { API } from "@/lib/axios";
 
-export type ProfileProps = {
+export type GetProfileResponse = {
   id: string;
   name: string;
   email: string;
@@ -12,5 +12,5 @@ export type ProfileProps = {
 
 export async function getProfile() {
   const response = await API.get("/me");
-  return response.data as ProfileProps;
+  return response.data as GetProfileResponse;
 }
