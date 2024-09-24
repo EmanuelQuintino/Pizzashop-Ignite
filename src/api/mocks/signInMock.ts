@@ -14,6 +14,7 @@ export const signInMock = http.post<never, SignInProps>(
         },
       });
     }
+
     return new HttpResponse(null, { status: 401 });
   },
 );
