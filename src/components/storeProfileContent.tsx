@@ -1,6 +1,6 @@
 import {
   getManagedRestaurant,
-  ManagedRestaurantProps,
+  GetManagedRestaurantResponse,
 } from "@/api/getManagedRestaurant";
 import { Button } from "./ui/button";
 import {
@@ -53,16 +53,19 @@ export function StoreProfileContent() {
     name,
     description,
   }: StoreProfileSchema) {
-    const cached = queryClient.getQueryData<ManagedRestaurantProps>([
+    const cached = queryClient.getQueryData<GetManagedRestaurantResponse>([
       "managedRestaurant",
     ]);
 
     if (cached) {
-      queryClient.setQueryData<ManagedRestaurantProps>(["managedRestaurant"], {
-        ...cached,
-        name,
-        description,
-      });
+      queryClient.setQueryData<GetManagedRestaurantResponse>(
+        ["managedRestaurant"],
+        {
+          ...cached,
+          name,
+          description,
+        },
+      );
     }
 
     return { cached };
