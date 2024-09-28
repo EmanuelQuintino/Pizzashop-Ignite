@@ -9,7 +9,7 @@ import { ptBR } from "date-fns/locale";
 import { useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { cancelOrder } from "@/api/cancelOrder";
-import { GetOrdersProps } from "@/api/getOrders";
+import { GetOrdersResponse } from "@/api/getOrders";
 import { approveOrder } from "@/api/approveOrder";
 import { deliverOrder } from "@/api/deliverOrder";
 import { dispatchOrder } from "@/api/dispatchOrder";
@@ -30,14 +30,14 @@ export function OrderTableRow({ order }: OrderTableRowProps) {
   const queryClient = useQueryClient();
 
   function updateOrderStatusOnCache(orderId: string, status: OrderStatus) {
-    const orderListCache = queryClient.getQueriesData<GetOrdersProps>({
+    const orderListCache = queryClient.getQueriesData<GetOrdersResponse>({
       queryKey: ["orders"],
     });
 
     orderListCache.forEach(([cacheKey, cacheData]) => {
       if (!cacheData) return;
 
-      queryClient.setQueryData<GetOrdersProps>(cacheKey, {
+      queryClient.setQueryData<GetOrdersResponse>(cacheKey, {
         ...cacheData,
         orders: cacheData.orders.map((order) => {
           if (order.orderId == orderId) {
