@@ -30,7 +30,3 @@ $ npm install
 # Run project
 $ npm run dev
 ```
-
-## Links
-
-- [Deploy](https://dt-money-ignite-zeta.vercel.app/)
