@@ -4,8 +4,8 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev:test": "vite",
-    "dev": "vite --port 9999 --mode test",
+    "dev": "vite",
+    "dev:test": "vite --port 9999 --mode test",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
