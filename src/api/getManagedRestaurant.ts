@@ -1,0 +1,15 @@
+import { API } from "@/lib/axios";
+
+export type GetManagedRestaurantResponse = {
+  name: string;
+  id: string;
+  createdAt: Date | null;
+  updatedAt: Date | null;
+  description: string | null;
+  managerId: string | null;
+};
+
+export async function getManagedRestaurant() {
+  const response = await API.get("/managed-restaurant");
+  return response.data as GetManagedRestaurantResponse;
+}
